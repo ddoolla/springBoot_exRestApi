@@ -52,6 +52,10 @@ dependencies {
     // annotationProcessor - 컴파일 시점에 어노테이션 처리
     annotationProcessor("jakarta.annotation:jakarta.annotation-api")
     annotationProcessor("jakarta.persistence:jakarta.persistence-api")
+
+    // 가짜데이터 생성 라이브러리
+    implementation("net.datafaker:datafaker:2.4.2")
+
 }
 
 tasks.withType<Test> {

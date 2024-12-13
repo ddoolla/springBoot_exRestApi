@@ -1,4 +1,4 @@
-package com.axios.restapi.config;
+package com.axios.restapi.springboot.config;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;

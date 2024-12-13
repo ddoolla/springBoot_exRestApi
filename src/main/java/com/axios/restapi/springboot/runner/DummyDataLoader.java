@@ -1,4 +1,4 @@
-package com.axios.restapi.runner;
+package com.axios.restapi.springboot.runner;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;

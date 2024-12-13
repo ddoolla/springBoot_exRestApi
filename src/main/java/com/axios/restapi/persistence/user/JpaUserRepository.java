@@ -1,4 +1,4 @@
-package com.axios.restapi.users;
+package com.axios.restapi.persistence.user;
 
 import org.springframework.data.repository.Repository;
 
@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public interface JpaUserRepository extends Repository<User, Long> {
 
-    void save(User user);
+    User save(User user);
 
     Optional<User> findById(Long id);
 }

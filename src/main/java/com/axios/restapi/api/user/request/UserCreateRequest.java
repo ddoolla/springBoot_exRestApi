@@ -1,19 +1,19 @@
-package com.axios.restapi.business.user.data;
+package com.axios.restapi.api.user.request;
 
-import com.axios.restapi.persistence.user.User;
+import com.axios.restapi.business.user.data.UserCreateData;
 import com.axios.restapi.persistence.user.enums.Gender;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class CreateUserData {
+public class UserCreateRequest {
 
     private String name;
     private Gender gender;
     private String hobby;
 
-    public User toEntity() {
-        return new User(name, gender, hobby);
+    public UserCreateData toData() {
+        return new UserCreateData(name, gender, hobby);
     }
 }

@@ -1,10 +1,13 @@
 package com.axios.restapi.api.user;
 
-import com.axios.restapi.api.user.response.ListUserResponse;
+import com.axios.restapi.api.user.response.UserListResponse;
 import com.axios.restapi.business.user.UserService;
-import com.axios.restapi.api.user.request.CreateUserRequest;
-import lombok.Getter;
+import com.axios.restapi.api.user.request.UserCreateRequest;
+import com.axios.restapi.persistence.user.dto.UserListDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,12 +24,13 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping
-    public ResponseEntity<ListUserResponse> readManyUsers() {
-        return ResponseEntity.ok(null);
+    public ResponseEntity<UserListResponse> readManyUsers(@PageableDefault(size = 20) Pageable pageable) {
+        Page<UserListDto> userPages = userService.listUsers(pageable);
+        return ResponseEntity.ok(new UserListResponse(userPages));
     }
 
     @PostMapping
-    public ResponseEntity<Void> createUser(CreateUserRequest request) {
+    public ResponseEntity<Void> createUser(UserCreateRequest request) {
         Long newUserId = userService.registerUser(request.toData());
         return ResponseEntity.created(URI.create("/users/" + newUserId)).build();
     }

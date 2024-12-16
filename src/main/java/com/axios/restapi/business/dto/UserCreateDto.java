@@ -1,13 +1,13 @@
-package com.axios.restapi.business.user.data;
+package com.axios.restapi.business.dto;
 
-import com.axios.restapi.persistence.user.User;
-import com.axios.restapi.persistence.user.enums.Gender;
+import com.axios.restapi.persistence.entity.User;
+import com.axios.restapi.shared.enums.Gender;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class UserCreateData {
+public class UserCreateDto {
 
     private String name;
     private Gender gender;

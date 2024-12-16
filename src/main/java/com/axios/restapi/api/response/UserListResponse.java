@@ -1,16 +1,14 @@
-package com.axios.restapi.api.user.response;
+package com.axios.restapi.api.response;
 
-import com.axios.restapi.persistence.user.dto.UserListDto;
+import com.axios.restapi.persistence.record.UserListRecord;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.data.domain.Page;
-
-import java.util.List;
 
 @Getter
 @AllArgsConstructor
 public class UserListResponse {
 
-    private Page<UserListDto> users;
+    private Page<UserListRecord> users;
 
 }

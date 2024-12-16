@@ -1,6 +1,6 @@
-package com.axios.restapi.persistence.user;
+package com.axios.restapi.persistence.entity;
 
-import com.axios.restapi.persistence.user.enums.Gender;
+import com.axios.restapi.shared.enums.Gender;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;

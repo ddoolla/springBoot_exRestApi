@@ -1,7 +1,11 @@
-package com.axios.restapi.persistence.user;
+package com.axios.restapi.persistence.impl;
 
-import com.axios.restapi.persistence.user.dto.QUserListDto;
-import com.axios.restapi.persistence.user.dto.UserListDto;
+import com.axios.restapi.persistence.JpaUserRepository;
+import com.axios.restapi.persistence.entity.User;
+import com.axios.restapi.persistence.UserRepository;
+import com.axios.restapi.persistence.record.QUserListRecord;
+import com.axios.restapi.persistence.record.UserListRecord;
+
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +16,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-import static com.axios.restapi.persistence.user.QUser.user;
+import static com.axios.restapi.persistence.entity.QUser.user;
+
 
 @Repository
 @RequiredArgsConstructor
@@ -22,9 +27,9 @@ public class UserRepositoryImpl implements UserRepository {
     private final JPAQueryFactory query;
 
     @Override
-    public Page<UserListDto> selectAllUsers(Pageable pageable) {
-        List<UserListDto> content = query
-                .select(new QUserListDto(
+    public Page<UserListRecord> selectAllUsers(Pageable pageable) {
+        List<UserListRecord> content = query
+                .select(new QUserListRecord(
                         user.id,
                         user.name,
                         user.gender,

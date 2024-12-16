@@ -3,7 +3,7 @@ package com.axios.restapi.api;
 import com.axios.restapi.api.response.UserListResponse;
 import com.axios.restapi.business.UserService;
 import com.axios.restapi.api.request.UserCreateRequest;
-import com.axios.restapi.persistence.record.UserListRecord;
+import com.axios.restapi.business.dto.UserListDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,7 +25,7 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity<UserListResponse> readManyUsers(@PageableDefault(size = 20) Pageable pageable) {
-        Page<UserListRecord> userPages = userService.listUsers(pageable);
+        Page<UserListDto> userPages = userService.listUsers(pageable);
         return ResponseEntity.ok(new UserListResponse(userPages));
     }
 

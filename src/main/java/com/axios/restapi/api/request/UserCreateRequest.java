@@ -13,7 +13,7 @@ public class UserCreateRequest {
     private Gender gender;
     private String hobby;
 
-    public UserCreateDto toData() {
+    public UserCreateDto toDto() {
         return new UserCreateDto(name, gender, hobby);
     }
 }

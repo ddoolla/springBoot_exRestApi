@@ -31,7 +31,7 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<Void> createUser(UserCreateRequest request) {
-        Long newUserId = userService.registerUser(request.toData());
+        Long newUserId = userService.registerUser(request.toDto());
         return ResponseEntity.created(URI.create("/users/" + newUserId)).build();
     }
 }

@@ -36,7 +36,14 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<ErrorResponse> handleNotFoundException(NotFoundException e) {
         log.error("error message: {}", e.getMessage());
-        ErrorResponse response = new ErrorResponse(ErrorCode.NOT_FOUND, e.getMessage());
+        ErrorResponse response = new ErrorResponse(ErrorCode.ENTITY_NOT_FOUND, e.getMessage());
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorResponse> handleException(Exception e) {
+        log.error("error message: {}", e.getMessage());
+        ErrorResponse response = new ErrorResponse(ErrorCode.INTERNAL_SERVER_ERROR, e.getMessage());
+        return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

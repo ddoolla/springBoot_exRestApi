@@ -27,6 +27,10 @@ public class User {
 
     private LocalDateTime createdAt;
 
+    private LocalDateTime updatedAt;
+
+    private LocalDateTime deletedAt;
+
     public User(String name,
                 Gender gender,
                 String hobby) {
@@ -34,6 +38,7 @@ public class User {
         this.gender = gender;
         this.hobby = hobby;
         this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+        this.deletedAt = null;
     }
-
 }

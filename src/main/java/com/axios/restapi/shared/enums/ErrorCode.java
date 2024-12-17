@@ -4,5 +4,6 @@ import lombok.Getter;
 
 @Getter
 public enum ErrorCode {
-    NOT_FOUND
+    ENTITY_NOT_FOUND,
+    INTERNAL_SERVER_ERROR
 }

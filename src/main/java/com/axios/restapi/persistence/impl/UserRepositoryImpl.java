@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 import static com.axios.restapi.persistence.entity.QUser.user;
 
@@ -46,6 +47,11 @@ public class UserRepositoryImpl implements UserRepository {
                 .from(user);
 
         return PageableExecutionUtils.getPage(content, pageable, count::fetchFirst);
+    }
+
+    @Override
+    public Optional<User> selectUserBy(Long id) {
+        return jpaUserRepository.findById(id);
     }
 
     @Transactional

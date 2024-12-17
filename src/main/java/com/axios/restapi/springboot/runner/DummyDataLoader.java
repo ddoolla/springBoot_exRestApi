@@ -1,6 +1,5 @@
 package com.axios.restapi.springboot.runner;
 
-import com.axios.restapi.business.UserService;
 import com.axios.restapi.persistence.UserRepository;
 import com.axios.restapi.persistence.entity.User;
 import com.axios.restapi.shared.enums.Gender;
@@ -8,11 +7,6 @@ import lombok.RequiredArgsConstructor;
 import net.datafaker.Faker;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestBody;
-
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 
 @Component
 @RequiredArgsConstructor

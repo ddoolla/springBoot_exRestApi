@@ -1,12 +1,12 @@
 package com.axios.restapi.api;
 
+import com.axios.restapi.api.response.UserInfoResponse;
 import com.axios.restapi.api.response.UserListResponse;
 import com.axios.restapi.business.UserService;
 import com.axios.restapi.api.request.UserCreateRequest;
-import com.axios.restapi.business.dto.UserListDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
+
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +23,12 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity<UserListResponse> readManyUsers(@PageableDefault(size = 5) Pageable pageable) {
-        Page<UserListDto> userPages = userService.listUsers(pageable);
-        return ResponseEntity.ok(new UserListResponse(userPages));
+        return ResponseEntity.ok(new UserListResponse(userService.listUsers(pageable)));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<UserInfoResponse> readOneUser(@PathVariable Long id) {
+        return ResponseEntity.ok(new UserInfoResponse(userService.getUserBy(id)));
     }
 
     @PostMapping

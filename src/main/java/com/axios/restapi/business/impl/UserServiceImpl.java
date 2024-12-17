@@ -2,7 +2,9 @@ package com.axios.restapi.business.impl;
 
 import com.axios.restapi.business.UserService;
 import com.axios.restapi.business.dto.UserCreateDto;
+import com.axios.restapi.business.dto.UserInfoDto;
 import com.axios.restapi.business.dto.UserListDto;
+import com.axios.restapi.business.exception.NotFoundException;
 import com.axios.restapi.persistence.UserRepository;
 import com.axios.restapi.shared.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
@@ -15,14 +17,24 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
-    private final UserMapper userMapper;
 
+    @Override
     public Page<UserListDto> listUsers(Pageable pageable) {
-        return userRepository.selectAllUsers(pageable).map(userMapper::toUserListDto);
+        return userRepository.selectAllUsers(pageable)
+                .map(UserMapper::toUserListDto);
     }
 
-    public Long registerUser(UserCreateDto data) {
-        return userRepository.insertUser(data.toEntity());
+    @Override
+    public UserInfoDto getUserBy(Long id) {
+        return userRepository.selectUserBy(id)
+                .map(UserMapper::toUserInfoDto)
+                .orElseThrow(() -> new NotFoundException("User Not Found [Id: " + id + "]"));
+    }
+
+    @Override
+    public Long registerUser(UserCreateDto dto) {
+        return userRepository.insertUser(UserMapper.toEntity(dto));
+
     }
 
 }

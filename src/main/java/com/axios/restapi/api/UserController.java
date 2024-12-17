@@ -4,15 +4,13 @@ import com.axios.restapi.api.response.UserListResponse;
 import com.axios.restapi.business.UserService;
 import com.axios.restapi.api.request.UserCreateRequest;
 import com.axios.restapi.business.dto.UserListDto;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 
@@ -24,14 +22,14 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping
-    public ResponseEntity<UserListResponse> readManyUsers(@PageableDefault(size = 20) Pageable pageable) {
+    public ResponseEntity<UserListResponse> readManyUsers(@PageableDefault(size = 5) Pageable pageable) {
         Page<UserListDto> userPages = userService.listUsers(pageable);
         return ResponseEntity.ok(new UserListResponse(userPages));
     }
 
     @PostMapping
-    public ResponseEntity<Void> createUser(UserCreateRequest request) {
+    public ResponseEntity<Void> createUser(@Valid @RequestBody UserCreateRequest request) {
         Long newUserId = userService.registerUser(request.toDto());
-        return ResponseEntity.created(URI.create("/users/" + newUserId)).build();
+        return ResponseEntity.created(URI.create("/api/users/" + newUserId)).build();
     }
 }

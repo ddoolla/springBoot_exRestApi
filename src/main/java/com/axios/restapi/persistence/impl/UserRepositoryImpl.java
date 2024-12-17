@@ -13,12 +13,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.support.PageableExecutionUtils;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 import static com.axios.restapi.persistence.entity.QUser.user;
 
-
+@Transactional(readOnly = true)
 @Repository
 @RequiredArgsConstructor
 public class UserRepositoryImpl implements UserRepository {
@@ -47,6 +48,7 @@ public class UserRepositoryImpl implements UserRepository {
         return PageableExecutionUtils.getPage(content, pageable, count::fetchFirst);
     }
 
+    @Transactional
     @Override
     public Long insertUser(User user) {
         return jpaUserRepository.save(user).getId();

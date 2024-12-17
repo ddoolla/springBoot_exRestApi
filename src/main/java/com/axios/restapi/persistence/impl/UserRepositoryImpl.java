@@ -54,9 +54,30 @@ public class UserRepositoryImpl implements UserRepository {
         return jpaUserRepository.findById(id);
     }
 
+    @Override
+    public boolean existsUserBy(Long id) {
+        return query
+                .select(user)
+                .from(user)
+                .where(user.id.eq(id))
+                .fetchOne() != null;
+    }
+
     @Transactional
     @Override
-    public Long insertUser(User user) {
-        return jpaUserRepository.save(user).getId();
+    public Long insertUser(User userEntity) {
+        return jpaUserRepository.save(userEntity).getId();
     }
+
+    @Transactional
+    @Override
+    public void updateUser(Long id, User userEntity) {
+        query.update(user)
+                .set(user.name, userEntity.getName())
+                .set(user.gender, userEntity.getGender())
+                .set(user.hobby, userEntity.getHobby())
+                .where(user.id.eq(id))
+                .execute();
+    }
+
 }

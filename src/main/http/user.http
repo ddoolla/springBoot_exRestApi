@@ -3,3 +3,43 @@ GET http://localhost:8080/api/users
 
 ### 사용자 상세 조회
 GET http://localhost:8080/api/users/1
+
+### 사용자 정보 생성 성공
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+{
+  "name": "Lee",
+  "gender": "MALE",
+  "hobby": "game"
+}
+
+### 사용자 정보 생성 실패
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+{
+  "name": "",
+  "gender": "",
+  "hobby": ""
+}
+
+### 사용자 정보 수정 성공
+PUT http://localhost:8080/api/users/1
+Content-Type: application/json
+
+{
+  "name": "Kim",
+  "gender": "FEMALE",
+  "hobby": "cook"
+}
+
+### 사용자 정보 수정 실패
+PUT http://localhost:8080/api/users/77
+Content-Type: application/json
+
+{
+  "name": "Kim",
+  "gender": "FEMALE",
+  "hobby": "cook"
+}

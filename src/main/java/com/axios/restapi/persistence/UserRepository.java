@@ -13,5 +13,10 @@ public interface UserRepository {
 
     Optional<User> selectUserBy(Long id);
 
+    boolean existsUserBy(Long id);
+
     Long insertUser(User user);
+
+    void updateUser(Long id, User user);
+
 }

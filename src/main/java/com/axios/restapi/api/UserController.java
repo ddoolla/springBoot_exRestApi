@@ -1,9 +1,11 @@
 package com.axios.restapi.api;
 
+import com.axios.restapi.api.request.UserUpdateRequest;
 import com.axios.restapi.api.response.UserInfoResponse;
 import com.axios.restapi.api.response.UserListResponse;
 import com.axios.restapi.business.UserService;
 import com.axios.restapi.api.request.UserCreateRequest;
+import com.axios.restapi.shared.mapper.UserMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -33,7 +35,14 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<Void> createUser(@Valid @RequestBody UserCreateRequest request) {
-        Long newUserId = userService.registerUser(request.toDto());
+        Long newUserId = userService.registerUser(UserMapper.toUserCreateDto(request));
         return ResponseEntity.created(URI.create("/api/users/" + newUserId)).build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> updateUser(@PathVariable Long id,
+                                           @Valid @RequestBody UserUpdateRequest request) {
+        userService.editUser(id, UserMapper.toUserUpdateDto(request));
+        return ResponseEntity.ok().build();
     }
 }

@@ -1,22 +1,15 @@
-package com.axios.restapi.api.request;
+package com.axios.restapi.business.dto;
 
 import com.axios.restapi.shared.enums.Gender;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class UserCreateRequest {
+public class UserUpdateDto {
 
-    @NotBlank
     private String name;
-
-    @NotNull
     private Gender gender;
-
-    @NotBlank
     private String hobby;
 
 }

@@ -35,4 +35,5 @@ public class User {
         this.hobby = hobby;
         this.createdAt = LocalDateTime.now();
     }
+
 }

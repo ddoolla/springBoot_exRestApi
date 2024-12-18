@@ -8,7 +8,6 @@ import com.axios.restapi.persistence.record.QUserListRecord;
 import com.axios.restapi.persistence.record.UserInfoRecord;
 import com.axios.restapi.persistence.record.UserListRecord;
 
-import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -104,6 +103,15 @@ public class UserRepositoryImpl implements UserRepository {
                 .set(user.gender, userEntity.getGender())
                 .set(user.hobby, userEntity.getHobby())
                 .set(user.updatedAt, LocalDateTime.now())
+                .where(idEq(id))
+                .execute();
+    }
+
+    @Transactional
+    @Override
+    public void deleteUserBy(Long id) {
+        query.update(user)
+                .set(user.deletedAt, LocalDateTime.now())
                 .where(idEq(id))
                 .execute();
     }

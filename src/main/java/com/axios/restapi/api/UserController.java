@@ -45,4 +45,10 @@ public class UserController {
         userService.editUser(id, UserMapper.toUserUpdateDto(request));
         return ResponseEntity.ok().build();
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+        userService.removeUserBy(id);
+        return ResponseEntity.noContent().build();
+    }
 }

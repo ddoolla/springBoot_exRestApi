@@ -46,3 +46,9 @@ Content-Type: application/json
   "gender": "FEMALE",
   "hobby": "cook"
 }
+
+### 사용자 정보 삭제 성공
+DELETE http://localhost:8080/api/users/1
+
+### 사용자 정보 삭제 실패
+DELETE http://localhost:8080/api/users/9999

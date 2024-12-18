@@ -20,4 +20,5 @@ public interface UserRepository {
 
     void updateUser(Long id, User user);
 
+    void deleteUserBy(Long id);
 }

@@ -21,7 +21,7 @@ public class DummyDataLoader implements CommandLineRunner {
      *          LocalDateTime past = LocalDateTime.ofInstant(pastInstant, ZoneId.systemDefault());
      */
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
 
         for (int i = 0; i < 75; i ++) {
             Faker faker = new Faker();

@@ -50,4 +50,15 @@ public class UserServiceImpl implements UserService {
         userRepository.updateUser(id, UserMapper.toEntity(dto));
     }
 
+    @Override
+    public void removeUserBy(Long id) {
+        boolean result = userRepository.existsUserBy(id);
+
+        if (!result) {
+            throw new NotFoundException("User Not Found [Id: " + id + "]");
+        }
+
+        userRepository.deleteUserBy(id);
+    }
+
 }

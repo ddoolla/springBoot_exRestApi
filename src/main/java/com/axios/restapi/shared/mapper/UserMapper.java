@@ -7,6 +7,7 @@ import com.axios.restapi.business.dto.UserInfoDto;
 import com.axios.restapi.business.dto.UserListDto;
 import com.axios.restapi.business.dto.UserUpdateDto;
 import com.axios.restapi.persistence.entity.User;
+import com.axios.restapi.persistence.record.UserInfoRecord;
 import com.axios.restapi.persistence.record.UserListRecord;
 
 public class UserMapper {
@@ -21,13 +22,13 @@ public class UserMapper {
         );
     }
 
-    public static UserInfoDto toUserInfoDto(User user) {
+    public static UserInfoDto toUserInfoDto(UserInfoRecord data) {
         return new UserInfoDto(
-                user.getId(),
-                user.getName(),
-                user.getGender(),
-                user.getHobby(),
-                user.getCreatedAt()
+                data.getId(),
+                data.getName(),
+                data.getGender(),
+                data.getHobby(),
+                data.getCreatedAt()
         );
     }
 

@@ -3,9 +3,13 @@ package com.axios.restapi.persistence.impl;
 import com.axios.restapi.persistence.JpaUserRepository;
 import com.axios.restapi.persistence.entity.User;
 import com.axios.restapi.persistence.UserRepository;
+import com.axios.restapi.persistence.record.QUserInfoRecord;
 import com.axios.restapi.persistence.record.QUserListRecord;
+import com.axios.restapi.persistence.record.UserInfoRecord;
 import com.axios.restapi.persistence.record.UserListRecord;
 
+import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +19,7 @@ import org.springframework.data.support.PageableExecutionUtils;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,6 +33,16 @@ public class UserRepositoryImpl implements UserRepository {
     private final JpaUserRepository jpaUserRepository;
     private final JPAQueryFactory query;
 
+    /* 조건 메서드 */
+    private BooleanExpression notDelete() {
+        return user.deletedAt.isNull();
+    }
+
+    private BooleanExpression idEq(Long id) {
+        return user.id.eq(id);
+    }
+
+    /* 비즈니스 메서드 */
     @Override
     public Page<UserListRecord> selectAllUsers(Pageable pageable) {
         List<UserListRecord> content = query
@@ -38,28 +53,40 @@ public class UserRepositoryImpl implements UserRepository {
                         user.hobby,
                         user.createdAt
                 )).from(user)
+                .where(notDelete())
                 .limit(pageable.getPageSize())
                 .offset(pageable.getOffset())
                 .fetch();
 
         JPAQuery<Long> count = query
                 .select(user.count())
-                .from(user);
+                .from(user)
+                .where(notDelete());
 
         return PageableExecutionUtils.getPage(content, pageable, count::fetchFirst);
     }
 
     @Override
-    public Optional<User> selectUserBy(Long id) {
-        return jpaUserRepository.findById(id);
+    public Optional<UserInfoRecord> selectUserBy(Long id) {
+        return Optional.ofNullable(query
+                .select(new QUserInfoRecord(
+                        user.id,
+                        user.name,
+                        user.gender,
+                        user.hobby,
+                        user.createdAt
+                )).from(user)
+                .where(notDelete(), idEq(id))
+                .fetchOne()
+        );
     }
 
     @Override
     public boolean existsUserBy(Long id) {
         return query
-                .select(user)
+                .select(user.id)
                 .from(user)
-                .where(user.id.eq(id))
+                .where(notDelete(), idEq(id))
                 .fetchOne() != null;
     }
 
@@ -76,7 +103,8 @@ public class UserRepositoryImpl implements UserRepository {
                 .set(user.name, userEntity.getName())
                 .set(user.gender, userEntity.getGender())
                 .set(user.hobby, userEntity.getHobby())
-                .where(user.id.eq(id))
+                .set(user.updatedAt, LocalDateTime.now())
+                .where(idEq(id))
                 .execute();
     }
 

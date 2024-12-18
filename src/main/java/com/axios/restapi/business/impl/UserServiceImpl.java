@@ -8,7 +8,6 @@ import com.axios.restapi.business.dto.UserUpdateDto;
 import com.axios.restapi.business.exception.NotFoundException;
 import com.axios.restapi.persistence.UserRepository;
 import com.axios.restapi.shared.mapper.UserMapper;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -41,24 +40,23 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void editUser(Long id, UserUpdateDto dto) {
-        boolean result = userRepository.existsUserBy(id);
-
-        if (!result) {
-            throw new NotFoundException("User Not Found [Id: " + id + "]");
-        }
-
+        checkUserExists(id);
         userRepository.updateUser(id, UserMapper.toEntity(dto));
     }
 
     @Override
     public void removeUserBy(Long id) {
+        checkUserExists(id);
+        userRepository.deleteUserBy(id);
+    }
+
+    private void checkUserExists(Long id) {
         boolean result = userRepository.existsUserBy(id);
 
         if (!result) {
             throw new NotFoundException("User Not Found [Id: " + id + "]");
         }
-
-        userRepository.deleteUserBy(id);
     }
+
 
 }

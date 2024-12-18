@@ -1,13 +1,12 @@
 package com.axios.restapi.persistence.impl;
 
 import com.axios.restapi.persistence.JpaUserRepository;
-import com.axios.restapi.persistence.entity.User;
 import com.axios.restapi.persistence.UserRepository;
+import com.axios.restapi.persistence.entity.User;
 import com.axios.restapi.persistence.record.QUserInfoRecord;
 import com.axios.restapi.persistence.record.QUserListRecord;
 import com.axios.restapi.persistence.record.UserInfoRecord;
 import com.axios.restapi.persistence.record.UserListRecord;
-
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -87,6 +86,11 @@ public class UserRepositoryImpl implements UserRepository {
                 .from(user)
                 .where(notDelete(), idEq(id))
                 .fetchOne() != null;
+    }
+
+    @Override
+    public User getProxyUserBy(Long id) {
+        return jpaUserRepository.getReferenceById(id);
     }
 
     @Transactional

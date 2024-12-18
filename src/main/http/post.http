@@ -1,0 +1,9 @@
+### 게시글 정보 생성 성공
+POST http://localhost:8080/api/posts
+Content-Type: application/json
+
+{
+  "userId": "1",
+  "title": "Hello",
+  "content": "Nice to meet you"
+}

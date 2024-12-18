@@ -1,8 +1,8 @@
 package com.axios.restapi.persistence;
 
+import com.axios.restapi.persistence.entity.User;
 import com.axios.restapi.persistence.record.UserInfoRecord;
 import com.axios.restapi.persistence.record.UserListRecord;
-import com.axios.restapi.persistence.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -15,6 +15,8 @@ public interface UserRepository {
     Optional<UserInfoRecord> selectUserBy(Long id);
 
     boolean existsUserBy(Long id);
+
+    User getProxyUserBy(Long id);
 
     Long insertUser(User user);
 

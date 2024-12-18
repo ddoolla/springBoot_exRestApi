@@ -1,6 +1,7 @@
 package com.axios.restapi.business.impl;
 
 import com.axios.restapi.business.UserService;
+import com.axios.restapi.business.component.ExistenceValidator;
 import com.axios.restapi.business.dto.UserCreateDto;
 import com.axios.restapi.business.dto.UserInfoDto;
 import com.axios.restapi.business.dto.UserListDto;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final ExistenceValidator validator;
 
     @Override
     public Page<UserListDto> listUsers(Pageable pageable) {
@@ -40,22 +42,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void editUser(Long id, UserUpdateDto dto) {
-        checkUserExists(id);
+        validator.validateUserExists(id);
         userRepository.updateUser(id, UserMapper.toEntity(dto));
     }
 
     @Override
     public void removeUserBy(Long id) {
-        checkUserExists(id);
+        validator.validateUserExists(id);
         userRepository.deleteUserBy(id);
-    }
-
-    private void checkUserExists(Long id) {
-        boolean result = userRepository.existsUserBy(id);
-
-        if (!result) {
-            throw new NotFoundException("User Not Found [Id: " + id + "]");
-        }
     }
 
 

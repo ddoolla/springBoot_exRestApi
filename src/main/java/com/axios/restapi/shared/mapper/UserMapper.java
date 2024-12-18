@@ -9,6 +9,7 @@ import com.axios.restapi.business.dto.UserUpdateDto;
 import com.axios.restapi.persistence.entity.User;
 import com.axios.restapi.persistence.record.UserInfoRecord;
 import com.axios.restapi.persistence.record.UserListRecord;
+import com.axios.restapi.shared.util.StringFormatUtil;
 
 public class UserMapper {
 
@@ -18,7 +19,7 @@ public class UserMapper {
                 data.getName(),
                 data.getGender(),
                 data.getHobby(),
-                data.getCreatedAt()
+                StringFormatUtil.formatDateTime(data.getCreatedAt(), "yyyy-MM-dd HH:mm:ss")
         );
     }
 
@@ -28,7 +29,7 @@ public class UserMapper {
                 data.getName(),
                 data.getGender(),
                 data.getHobby(),
-                data.getCreatedAt()
+                StringFormatUtil.formatDateTime(data.getCreatedAt(), "yyyy-MM-dd HH:mm:ss")
         );
     }
 

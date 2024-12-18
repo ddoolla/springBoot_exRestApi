@@ -13,5 +13,5 @@ public class UserListDto {
     private String name;
     private Gender gender;
     private String hobby;
-    private LocalDateTime createdAt;
+    private String createdAt;
 }

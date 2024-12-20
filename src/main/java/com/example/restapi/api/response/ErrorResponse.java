@@ -8,6 +8,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public class ErrorResponse {
 
+    private int status;
     private ErrorCode errorCode;
     private String errorMessage;
 

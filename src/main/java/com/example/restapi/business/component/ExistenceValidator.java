@@ -1,7 +1,7 @@
 package com.example.restapi.business.component;
 
 import com.example.restapi.business.exception.NotFoundException;
-import com.example.restapi.persistence.UserRepository;
+import com.example.restapi.persistence.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

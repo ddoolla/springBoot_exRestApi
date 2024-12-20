@@ -1,7 +1,7 @@
 package com.example.restapi.springboot.runner;
 
-import com.example.restapi.persistence.UserRepository;
-import com.example.restapi.persistence.entity.User;
+import com.example.restapi.persistence.user.User;
+import com.example.restapi.persistence.user.UserRepository;
 import com.example.restapi.shared.enums.Gender;
 import lombok.RequiredArgsConstructor;
 import net.datafaker.Faker;

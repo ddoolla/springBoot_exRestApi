@@ -48,13 +48,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void editUser(Long id, UserUpdateRequest request) {
-        validator.validateUserExists(id);
+        validator.validateUser(id);
         userRepository.updateUser(id, UserMapper.toEntity(request));
     }
 
     @Override
     public void removeUserBy(Long id) {
-        validator.validateUserExists(id);
+        validator.validateUser(id);
         userRepository.deleteUserBy(id);
     }
 

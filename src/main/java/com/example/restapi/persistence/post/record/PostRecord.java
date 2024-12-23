@@ -21,4 +21,5 @@ public class PostRecord {
         this.content = content;
         this.user = new UserInPostRecord(userName);
     }
+
 }

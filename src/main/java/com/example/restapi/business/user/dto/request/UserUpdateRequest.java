@@ -11,6 +11,9 @@ import lombok.Getter;
 public class UserUpdateRequest {
 
     @NotBlank
+    private String password;
+
+    @NotBlank
     private String name;
 
     @NotNull

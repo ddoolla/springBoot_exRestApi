@@ -33,6 +33,8 @@ public class UserMapper {
 
     public static User toEntity(UserCreateRequest request) {
         return new User(
+                request.getNickName(),
+                request.getPassword(),
                 request.getName(),
                 request.getGender(),
                 request.getHobby()
@@ -41,6 +43,8 @@ public class UserMapper {
 
     public static User toEntity(UserUpdateRequest request) {
         return new User(
+                null,
+                request.getPassword(),
                 request.getName(),
                 request.getGender(),
                 request.getHobby()

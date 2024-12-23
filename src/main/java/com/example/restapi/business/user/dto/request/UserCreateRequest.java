@@ -11,6 +11,12 @@ import lombok.Getter;
 public class UserCreateRequest {
 
     @NotBlank
+    private String nickName;
+
+    @NotBlank
+    private String password;
+
+    @NotBlank
     private String name;
 
     @NotNull

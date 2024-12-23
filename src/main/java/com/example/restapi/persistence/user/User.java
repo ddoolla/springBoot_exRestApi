@@ -16,6 +16,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class User extends BaseEntity {
 
+    private String nickName;
+
+    private String password;
+
     private String name;
 
     @Enumerated(EnumType.STRING)
@@ -23,9 +27,13 @@ public class User extends BaseEntity {
 
     private String hobby;
 
-    public User(String name,
+    public User(String nickName,
+                String name,
+                String password,
                 Gender gender,
                 String hobby) {
+        this.nickName = nickName;
+        this.password = password;
         this.name = name;
         this.gender = gender;
         this.hobby = hobby;
@@ -40,5 +48,15 @@ public class User extends BaseEntity {
         User user = new User();
         user.id = id;
         return user;
+    }
+
+    public void update(String name,
+                       String password,
+                       Gender gender,
+                       String hobby) {
+        this.password = password;
+        this.name = name;
+        this.gender = gender;
+        this.hobby = hobby;
     }
 }

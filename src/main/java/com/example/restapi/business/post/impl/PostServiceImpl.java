@@ -31,7 +31,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Long registerPost(PostCreateRequest request) {
-        validator.validateUserExists(request.getUserId());
+        validator.validateUser(request.getUserId());
         return postRepository.createPost(PostMapper.toEntity(request));
     }
 }

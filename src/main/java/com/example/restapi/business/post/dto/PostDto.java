@@ -10,7 +10,7 @@ public class PostDto {
     private final Long id;
     private final String title;
     private final String content;
-    private final PostDto.UserData user;
+    private final UserInPostDto user;
 
     public PostDto(Long id,
                    String title,
@@ -19,12 +19,7 @@ public class PostDto {
         this.id = id;
         this.title = title;
         this.content = content;
-        this.user = new PostDto.UserData(userName);
+        this.user = new UserInPostDto(userName);
     }
 
-    @Getter
-    @AllArgsConstructor
-    public static class UserData {
-        private final String name;
-    }
 }

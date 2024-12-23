@@ -11,7 +11,7 @@ public class ExistenceValidator {
 
     private final UserRepository userRepository;
 
-    public void validateUserExists(Long userId) {
+    public void validateUser(Long userId) {
         boolean result = userRepository.existsUserBy(userId);
 
         if (!result) {

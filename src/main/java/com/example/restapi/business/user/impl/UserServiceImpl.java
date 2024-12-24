@@ -49,7 +49,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public void editUser(Long id, UserUpdateRequest request) {
         validator.validateUser(id);
-        userRepository.updateUser(id, UserMapper.toEntity(request));
+        userRepository.updateUser(
+                id,
+                request.getPassword(),
+                request.getName(),
+                request.getGender(),
+                request.getHobby()
+        );
     }
 
     @Override

@@ -29,9 +29,14 @@ public class DummyDataLoader implements CommandLineRunner {
         for (int i = 0; i < 75; i++) {
             Faker faker = new Faker();
 
-            String nickName = faker.funnyName().name();
-            String password = faker.text().text(
-                    Text.TextSymbolsBuilder.builder().with(DIGITS, 4).build());
+            String color = faker.color().name();
+            String animal = faker.animal().name();
+            int number = faker.number().numberBetween(1, 100);
+
+            String nickName = color + "_" + animal + number;
+            String password = faker.text().text(Text.TextSymbolsBuilder.builder()
+                    .len(8)
+                    .with(DIGITS).build());
             String name = faker.name().fullName();
             String gender = faker.gender().binaryTypes().toUpperCase();
             String hobby = faker.hobby().activity();

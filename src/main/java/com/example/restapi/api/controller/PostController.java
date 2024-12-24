@@ -25,6 +25,7 @@ public class PostController {
         return ResponseEntity.ok(new ApiResponse<>(postService.listPosts(pageable)));
     }
 
+
     @PostMapping
     public ResponseEntity<Void> createPost(@Valid @RequestBody PostCreateRequest request) {
         Long newId = postService.registerPost(request);

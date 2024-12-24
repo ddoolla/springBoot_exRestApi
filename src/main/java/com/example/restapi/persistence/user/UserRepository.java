@@ -2,6 +2,7 @@ package com.example.restapi.persistence.user;
 
 import com.example.restapi.persistence.user.record.UserInfoRecord;
 import com.example.restapi.persistence.user.record.UserRecord;
+import com.example.restapi.shared.enums.Gender;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -19,7 +20,11 @@ public interface UserRepository {
 
     Long insertUser(User user);
 
-    void updateUser(Long id, User user);
+    void updateUser(Long id,
+                    String password,
+                    String name,
+                    Gender gender,
+                    String hobby);
 
     void deleteUserBy(Long id);
 }

@@ -12,6 +12,8 @@ POST http://localhost:8080/api/users
 Content-Type: application/json
 
 {
+  "nickName": "blue_bird77",
+  "password": "11111111",
   "name": "Lee",
   "gender": "MALE",
   "hobby": "game"
@@ -22,9 +24,7 @@ POST http://localhost:8080/api/users
 Content-Type: application/json
 
 {
-  "name": "",
-  "gender": "MALE",
-  "hobby": ""
+  "name": "Lee"
 }
 
 ### 사용자 정보 수정 성공
@@ -32,6 +32,7 @@ PUT http://localhost:8080/api/users/1
 Content-Type: application/json
 
 {
+  "password": "11111111",
   "name": "Kim",
   "gender": "FEMALE",
   "hobby": "cook"

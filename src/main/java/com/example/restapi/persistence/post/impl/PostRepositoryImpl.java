@@ -42,7 +42,7 @@ public class PostRepositoryImpl implements PostRepository {
                         post.id,
                         post.title,
                         post.content,
-                        user.name
+                        user.nickName
                 )).from(post)
                 .innerJoin(user).on(post.user.id.eq(user.id))
                 .where(notDelete())

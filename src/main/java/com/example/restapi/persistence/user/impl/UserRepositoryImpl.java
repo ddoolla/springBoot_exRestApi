@@ -7,6 +7,7 @@ import com.example.restapi.persistence.user.record.QUserInfoRecord;
 import com.example.restapi.persistence.user.record.QUserRecord;
 import com.example.restapi.persistence.user.record.UserInfoRecord;
 import com.example.restapi.persistence.user.record.UserRecord;
+import com.example.restapi.shared.enums.Gender;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -101,11 +102,16 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Transactional
     @Override
-    public void updateUser(Long id, User userEntity) {
+    public void updateUser(Long id,
+                           String password,
+                           String name,
+                           Gender gender,
+                           String hobby) {
         query.update(user)
-                .set(user.name, userEntity.getName())
-                .set(user.gender, userEntity.getGender())
-                .set(user.hobby, userEntity.getHobby())
+                .set(user.password, password)
+                .set(user.name, name)
+                .set(user.gender, gender)
+                .set(user.hobby, hobby)
                 .set(user.updatedAt, LocalDateTime.now())
                 .where(idEq(id))
                 .execute();

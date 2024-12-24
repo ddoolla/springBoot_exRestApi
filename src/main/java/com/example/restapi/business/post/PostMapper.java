@@ -13,7 +13,7 @@ public class PostMapper {
                 data.getId(),
                 data.getTitle(),
                 data.getContent(),
-                data.getUser().getName()
+                data.getUser().getNickName()
         );
     }
 

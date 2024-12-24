@@ -28,8 +28,8 @@ public class User extends BaseEntity {
     private String hobby;
 
     public User(String nickName,
-                String name,
                 String password,
+                String name,
                 Gender gender,
                 String hobby) {
         this.nickName = nickName;
@@ -50,13 +50,4 @@ public class User extends BaseEntity {
         return user;
     }
 
-    public void update(String name,
-                       String password,
-                       Gender gender,
-                       String hobby) {
-        this.password = password;
-        this.name = name;
-        this.gender = gender;
-        this.hobby = hobby;
-    }
 }

@@ -10,16 +10,22 @@ public class PostDto {
     private final Long id;
     private final String title;
     private final String content;
-    private final UserInPostDto user;
+    private final UserData user;
 
     public PostDto(Long id,
                    String title,
                    String content,
-                   String userName) {
+                   String userNickName) {
         this.id = id;
         this.title = title;
         this.content = content;
-        this.user = new UserInPostDto(userName);
+        this.user = new UserData(userNickName);
+    }
+
+    @Getter
+    @AllArgsConstructor
+    public static class UserData {
+        private final String nickName;
     }
 
 }

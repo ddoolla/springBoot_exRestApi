@@ -86,7 +86,7 @@ public class UserRepositoryImpl implements UserRepository {
                 .select(user.id)
                 .from(user)
                 .where(notDelete(), idEq(id))
-                .fetchOne() != null;
+                .fetchFirst() != null;
     }
 
     @Override

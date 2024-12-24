@@ -49,5 +49,4 @@ public class User extends BaseEntity {
         user.id = id;
         return user;
     }
-
 }

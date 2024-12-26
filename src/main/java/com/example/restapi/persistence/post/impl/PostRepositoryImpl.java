@@ -110,4 +110,13 @@ public class PostRepositoryImpl implements PostRepository {
                 .execute();
     }
 
+    @Transactional
+    @Override
+    public void deletePostBy(Long id) {
+        query.update(post)
+                .set(post.deletedAt, LocalDateTime.now())
+                .where(eqId(id))
+                .execute();
+    }
+
 }

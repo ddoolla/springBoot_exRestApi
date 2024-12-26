@@ -50,4 +50,10 @@ public class PostServiceImpl implements PostService {
         postRepository.updatePostBy(id, request.getTitle(), request.getContent());
     }
 
+    @Override
+    public void removePost(Long id) {
+        validator.validatePost(id);
+        postRepository.deletePostBy(id);
+    }
+
 }

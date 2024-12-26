@@ -15,4 +15,6 @@ public interface PostService {
     Long registerPost(PostCreateRequest request);
 
     void editPost(Long id, PostUpdateRequest request);
+
+    void removePost(Long id);
 }

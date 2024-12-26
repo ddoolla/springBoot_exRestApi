@@ -85,7 +85,7 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public boolean existsUserBy(Long id) {
         return query
-                .select(user.id)
+                .selectOne()
                 .from(user)
                 .where(notDelete(), idEq(id))
                 .fetchFirst() != null;

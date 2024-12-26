@@ -87,7 +87,7 @@ public class PostRepositoryImpl implements PostRepository {
     @Override
     public boolean existsPostBy(Long id) {
         return query
-                .select(post.id)
+                .selectOne()
                 .from(post)
                 .where(notDelete(), eqId(id))
                 .fetchFirst() != null;

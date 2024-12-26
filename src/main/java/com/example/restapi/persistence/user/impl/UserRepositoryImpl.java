@@ -47,6 +47,7 @@ public class UserRepositoryImpl implements UserRepository {
         List<UserRecord> content = query
                 .select(new QUserRecord(
                         user.id,
+                        user.nickName,
                         user.name,
                         user.gender,
                         user.hobby,
@@ -70,6 +71,7 @@ public class UserRepositoryImpl implements UserRepository {
         return Optional.ofNullable(query
                 .select(new QUserInfoRecord(
                         user.id,
+                        user.nickName,
                         user.name,
                         user.gender,
                         user.hobby,

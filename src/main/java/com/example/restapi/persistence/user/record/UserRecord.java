@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 public class UserRecord {
 
     private final Long id;
+    private final String nickName;
     private final String name;
     private final Gender gender;
     private final String hobby;
@@ -17,11 +18,13 @@ public class UserRecord {
 
     @QueryProjection
     public UserRecord(Long id,
+                      String nickName,
                       String name,
                       Gender gender,
                       String hobby,
                       LocalDateTime createdAt) {
         this.id = id;
+        this.nickName = nickName;
         this.name = name;
         this.gender = gender;
         this.hobby = hobby;

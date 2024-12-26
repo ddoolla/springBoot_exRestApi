@@ -14,6 +14,7 @@ public class UserMapper {
     public static UserDto toUserDto(UserRecord data) {
         return new UserDto(
                 data.getId(),
+                data.getNickName(),
                 data.getName(),
                 data.getGender(),
                 data.getHobby(),
@@ -24,6 +25,7 @@ public class UserMapper {
     public static UserInfoDto toUserInfoDto(UserInfoRecord data) {
         return new UserInfoDto(
                 data.getId(),
+                data.getNickName(),
                 data.getName(),
                 data.getGender(),
                 data.getHobby(),

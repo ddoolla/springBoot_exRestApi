@@ -9,6 +9,7 @@ import lombok.Getter;
 public class UserInfoDto {
 
     private Long id;
+    private String nickName;
     private String name;
     private Gender gender;
     private String hobby;

@@ -16,3 +16,30 @@ Content-Type: application/json
   "title": "Hello",
   "content": "Nice to meet you"
 }
+
+### 게시글 정보 수정 성공
+PUT http://localhost:8080/api/posts/1
+Content-Type: application/json
+
+{
+  "title": "Hello",
+  "content": "Nice to meet you"
+}
+
+### 게시글 정보 수정 실패 - id 존재 X
+PUT http://localhost:8080/api/posts/9999
+Content-Type: application/json
+
+{
+  "title": "Hello",
+  "content": "Nice to meet you"
+}
+
+### 게시글 정보 수정 실패 - 유효성 검사 실패
+PUT http://localhost:8080/api/posts/9999
+Content-Type: application/json
+
+{
+
+}
+

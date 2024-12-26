@@ -17,6 +17,7 @@ import org.springframework.data.support.PageableExecutionUtils;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -83,9 +84,30 @@ public class PostRepositoryImpl implements PostRepository {
         );
     }
 
+    @Override
+    public boolean existsPostBy(Long id) {
+        return query
+                .select(post.id)
+                .from(post)
+                .where(notDelete(), eqId(id))
+                .fetchFirst() != null;
+    }
+
     @Transactional
     @Override
     public Long insertPost(Post post) {
         return jpaPostRepository.save(post).getId();
     }
+
+    @Transactional
+    @Override
+    public void updatePostBy(Long id, String title, String content) {
+        query.update(post)
+                .set(post.title, title)
+                .set(post.content, content)
+                .set(post.updatedAt, LocalDateTime.now())
+                .where(eqId(id))
+                .execute();
+    }
+
 }

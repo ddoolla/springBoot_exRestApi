@@ -13,5 +13,9 @@ public interface PostRepository {
 
     Optional<PostInfoRecord> selectPostBy(Long id);
 
+    boolean existsPostBy(Long id);
+
     Long insertPost(Post post);
+
+    void updatePostBy(Long id, String title, String content);
 }

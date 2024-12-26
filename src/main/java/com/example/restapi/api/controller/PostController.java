@@ -5,6 +5,7 @@ import com.example.restapi.business.post.PostService;
 import com.example.restapi.business.post.dto.PostInfoDto;
 import com.example.restapi.business.post.dto.PostListDto;
 import com.example.restapi.business.post.dto.request.PostCreateRequest;
+import com.example.restapi.business.post.dto.request.PostUpdateRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -35,5 +36,12 @@ public class PostController {
     public ResponseEntity<Void> createPost(@Valid @RequestBody PostCreateRequest request) {
         Long newId = postService.registerPost(request);
         return ResponseEntity.created(URI.create("/api/posts/" + newId)).build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> updatePost(@PathVariable Long id,
+                                           @Valid @RequestBody PostUpdateRequest request) {
+        postService.editPost(id, request);
+        return ResponseEntity.ok().build();
     }
 }

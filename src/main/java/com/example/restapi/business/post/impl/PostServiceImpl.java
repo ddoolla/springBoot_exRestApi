@@ -8,6 +8,7 @@ import com.example.restapi.business.post.dto.PostDto;
 import com.example.restapi.business.post.dto.PostInfoDto;
 import com.example.restapi.business.post.dto.PostListDto;
 import com.example.restapi.business.post.dto.request.PostCreateRequest;
+import com.example.restapi.business.post.dto.request.PostUpdateRequest;
 import com.example.restapi.persistence.post.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -42,4 +43,11 @@ public class PostServiceImpl implements PostService {
         validator.validateUser(request.getUserId());
         return postRepository.insertPost(PostMapper.toEntity(request));
     }
+
+    @Override
+    public void editPost(Long id, PostUpdateRequest request) {
+        validator.validatePost(id);
+        postRepository.updatePostBy(id, request.getTitle(), request.getContent());
+    }
+
 }

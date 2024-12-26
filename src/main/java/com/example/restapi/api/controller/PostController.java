@@ -2,6 +2,7 @@ package com.example.restapi.api.controller;
 
 import com.example.restapi.api.response.ApiResponse;
 import com.example.restapi.business.post.PostService;
+import com.example.restapi.business.post.dto.PostInfoDto;
 import com.example.restapi.business.post.dto.PostListDto;
 import com.example.restapi.business.post.dto.request.PostCreateRequest;
 import jakarta.validation.Valid;
@@ -21,10 +22,14 @@ public class PostController {
     private final PostService postService;
 
     @GetMapping
-    public ResponseEntity<ApiResponse<PostListDto>> getAllPosts(@PageableDefault(size = 5) Pageable pageable) {
+    public ResponseEntity<ApiResponse<PostListDto>> readManyPosts(@PageableDefault(size = 5) Pageable pageable) {
         return ResponseEntity.ok(new ApiResponse<>(postService.listPosts(pageable)));
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ApiResponse<PostInfoDto>> readOnePost(@PathVariable Long id) {
+        return ResponseEntity.ok(new ApiResponse<>(postService.getPostById(id)));
+    }
 
     @PostMapping
     public ResponseEntity<Void> createPost(@Valid @RequestBody PostCreateRequest request) {

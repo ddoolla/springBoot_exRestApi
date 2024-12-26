@@ -1,13 +1,13 @@
-package com.example.restapi.persistence.post.record;
+package com.example.restapi.business.post.dto;
 
-import com.querydsl.core.annotations.QueryProjection;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
 
 @Getter
-public class PostInfoRecord {
+@AllArgsConstructor
+public class PostInfoDto {
 
     private final Long id;
     private final String title;
@@ -15,8 +15,7 @@ public class PostInfoRecord {
     private final LocalDateTime createdAt;
     private final UserData user;
 
-    @QueryProjection
-    public PostInfoRecord(Long id,
+    public PostInfoDto(Long id,
                           String title,
                           String content,
                           LocalDateTime createdAt,

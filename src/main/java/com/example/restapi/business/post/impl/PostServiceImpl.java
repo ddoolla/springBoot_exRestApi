@@ -1,9 +1,11 @@
 package com.example.restapi.business.post.impl;
 
 import com.example.restapi.business.component.ExistenceValidator;
+import com.example.restapi.business.exception.NotFoundException;
 import com.example.restapi.business.post.PostMapper;
 import com.example.restapi.business.post.PostService;
 import com.example.restapi.business.post.dto.PostDto;
+import com.example.restapi.business.post.dto.PostInfoDto;
 import com.example.restapi.business.post.dto.PostListDto;
 import com.example.restapi.business.post.dto.request.PostCreateRequest;
 import com.example.restapi.persistence.post.PostRepository;
@@ -30,8 +32,14 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public PostInfoDto getPostById(Long id) {
+        return postRepository.selectPostBy(id).map(PostMapper::toPostInfoDto)
+                .orElseThrow(() -> new NotFoundException("Post Not Found [Id: " + id + "]"));
+    }
+
+    @Override
     public Long registerPost(PostCreateRequest request) {
         validator.validateUser(request.getUserId());
-        return postRepository.createPost(PostMapper.toEntity(request));
+        return postRepository.insertPost(PostMapper.toEntity(request));
     }
 }

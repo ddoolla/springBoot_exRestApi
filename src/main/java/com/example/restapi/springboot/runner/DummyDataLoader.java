@@ -1,5 +1,7 @@
 package com.example.restapi.springboot.runner;
 
+import com.example.restapi.persistence.post.Post;
+import com.example.restapi.persistence.post.PostRepository;
 import com.example.restapi.persistence.user.User;
 import com.example.restapi.persistence.user.UserRepository;
 import com.example.restapi.shared.enums.Gender;
@@ -16,6 +18,7 @@ import static net.datafaker.providers.base.Text.DIGITS;
 public class DummyDataLoader implements CommandLineRunner {
 
     private final UserRepository userRepository;
+    private final PostRepository postRepository;
 
     /**
      * * dataFaker - 랜덤 날짜 생성 방법 (time 패키지 사용)
@@ -26,6 +29,7 @@ public class DummyDataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) {
 
+        /* user 더미 데이터 */
         for (int i = 0; i < 75; i++) {
             Faker faker = new Faker();
 
@@ -49,6 +53,20 @@ public class DummyDataLoader implements CommandLineRunner {
                             hobby
                     )
             );
+        }
+
+        /* post 더미 데이터 */
+        for (int i = 0; i < 75; i++) {
+            Faker faker = new Faker();
+
+            String title = faker.book().title();
+            String genre = faker.book().genre();
+            String author = faker.book().author();
+            String publisher = faker.book().publisher();
+            String content = genre + ", " + author + ", " + publisher;
+            long userId = faker.number().numberBetween(1, 75);
+
+            postRepository.insertPost(new Post(title, content, User.toTemp(userId)));
         }
     }
 }

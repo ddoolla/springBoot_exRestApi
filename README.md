@@ -1,4 +1,8 @@
+
+> # RestAPI 서버 예제 프로젝트
+
 > ## 설정 파일 추가
+
 ### * 경로 : src/main/resource/application.properties
 ```
 // application.properties
@@ -6,10 +10,10 @@
 spring.application.name=restapi
 
 #datasources
-spring.datasource.driver-class-name=
-spring.datasource.url=
-spring.datasource.username=
-spring.datasource.password=
+spring.datasource.driver-class-name="DRIVER" 
+spring.datasource.url="DB_URL"
+spring.datasource.username="ID"
+spring.datasource.password="PASSWORD"
 
 #jpa
 spring.jpa.open-in-view=false

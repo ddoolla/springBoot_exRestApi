@@ -10,6 +10,7 @@ import com.example.restapi.business.post.dto.PostListDto;
 import com.example.restapi.business.post.dto.request.PostCreateRequest;
 import com.example.restapi.business.post.dto.request.PostUpdateRequest;
 import com.example.restapi.persistence.post.PostRepository;
+import com.example.restapi.shared.util.PaginationUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -28,7 +29,7 @@ public class PostServiceImpl implements PostService {
         return new PostListDto(
                 postPages.getContent(),
                 postPages.getTotalElements(),
-                postPages.getPageable()
+                new PaginationUtil(postPages)
         );
     }
 

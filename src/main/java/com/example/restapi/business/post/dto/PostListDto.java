@@ -1,5 +1,6 @@
 package com.example.restapi.business.post.dto;
 
+import com.example.restapi.shared.util.PaginationUtil;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.data.domain.Pageable;
@@ -12,6 +13,6 @@ public class PostListDto {
 
     private List<PostDto> posts;
     private Long count;
-    private Pageable pageable;
+    private PaginationUtil paginationUtil;
 
 }

@@ -10,6 +10,7 @@ import com.example.restapi.business.user.dto.UserListDto;
 import com.example.restapi.business.user.dto.request.UserCreateRequest;
 import com.example.restapi.business.user.dto.request.UserUpdateRequest;
 import com.example.restapi.persistence.user.UserRepository;
+import com.example.restapi.shared.util.PaginationUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -29,7 +30,7 @@ public class UserServiceImpl implements UserService {
         return new UserListDto(
                 userPages.getContent(),
                 userPages.getTotalElements(),
-                userPages.getPageable()
+                new PaginationUtil(userPages)
         );
     }
 

@@ -13,6 +13,6 @@ public class UserListDto {
 
     private List<UserDto> users;
     private Long count;
-    private PaginationUtil paginationUtil;
+    private PaginationUtil pagination;
 
 }

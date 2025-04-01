@@ -13,6 +13,6 @@ public class PostListDto {
 
     private List<PostDto> posts;
     private Long count;
-    private PaginationUtil paginationUtil;
+    private PaginationUtil pagination;
 
 }

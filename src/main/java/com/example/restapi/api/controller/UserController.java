@@ -23,7 +23,7 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping
-    public ResponseEntity<ApiResponse<UserListDto>> readManyUsers(@PageableDefault(size = 5) Pageable pageable) {
+    public ResponseEntity<ApiResponse<UserListDto>> readManyUsers(@PageableDefault(size = 100) Pageable pageable) {
         return ResponseEntity.ok(new ApiResponse<>(userService.listUsers(pageable)));
     }
 

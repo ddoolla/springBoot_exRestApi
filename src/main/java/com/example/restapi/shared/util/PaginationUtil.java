@@ -12,7 +12,7 @@ public class PaginationUtil {
     private final int blockStartNumber;
     private final int blockEndNumber;
     private final boolean isFirstPageButton;
-    private final boolean isPreButton;
+    private final boolean isPrevButton;
     private final boolean isNextButton;
     private final boolean isLastPageButton;
 
@@ -23,7 +23,7 @@ public class PaginationUtil {
         this.blockStartNumber = ((currentPage - 1) / blockSize) * blockSize + 1;
         this.blockEndNumber = Math.min((blockStartNumber + blockSize - 1), totalPages);
         this.isFirstPageButton = blockStartNumber > 1;
-        this.isPreButton = blockStartNumber > 1;
+        this.isPrevButton = blockStartNumber > 1;
         this.isNextButton = totalPages > blockEndNumber;
         this.isLastPageButton = totalPages > blockEndNumber;
     }
